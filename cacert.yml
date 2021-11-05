@@ -1,0 +1,16 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+ name: mtlsca
+spec:
+ secretName: cacert
+ isCA: true
+ issuerRef:
+   name: selfsigned-issuer
+   kind: ClusterIssuer
+ commonName: mtlsca
+ dnsNames:
+  - "*.NAMESPACE.svc"
+  - spin-x509
+  - localhost
+  - spin-x509.NAMESPACE.opsmx.com
