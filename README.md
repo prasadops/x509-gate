@@ -6,11 +6,11 @@ and create DNS record spin-x509.NAMESPACE.opsmx.com
 
 ## HALYARD CONFIG
 
-hal config security api ssl edit --key-alias gate --keystore /home/spinnaker/tls.jks --keystore-password --keystore-type jks --truststore /home/spinnaker/tls.jks --truststore-password --truststore-type jks
+        hal config security api ssl edit --key-alias gate --keystore /home/spinnaker/tls.jks --keystore-password --keystore-type jks --truststore /home/spinnaker/tls.jks --truststore-password --truststore-type jks
 
-hal config security api ssl enable
+        hal config security api ssl enable
 
-hal config security authn x509 enable
+        hal config security authn x509 enable
 
 ## Add this to default/profiles/gate-local.yml
 
@@ -18,4 +18,4 @@ hal config security authn x509 enable
       apiPort: 8085
       legacyServerPort: 9001
 
- hal deploy apply
+         hal deploy apply
