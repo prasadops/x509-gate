@@ -18,4 +18,6 @@ and create DNS record spin-x509.NAMESPACE.opsmx.com
       apiPort: 8085
       legacyServerPort: 9001
 
-         hal deploy apply
+## Run a hal command to apply changes
+    
+        hal deploy apply
