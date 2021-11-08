@@ -13,4 +13,4 @@ spec:
   - "*.NAMESPACE.svc"
   - spin-x509
   - localhost
-  - spin-x509.NAMESPACE.opsmx.com
+  - spin-x509.NAMESPACE.DNS

@@ -16,7 +16,7 @@ spec:
   dnsNames:
   - "*.NAMESPACE.svc"
   - spin-x509
-  - spin-x509.NAMESPACE.opsmx.com
+  - spin-x509.NAMESPACE.DNS
   - localhost
   usages:
   - digital signature
