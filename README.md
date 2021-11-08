@@ -1,9 +1,11 @@
+## Requirements
+
 1. Inputs - Namespace
 
 2. If you want to expose the x509 gate to the external world, please create a spin-x509 service of type LB with application running on port 8085 
 and create DNS record spin-x509.NAMESPACE.opsmx.com 
 
-**Steps to be Followed
+## Steps to be Followed
 
 1. Clone the repo 
 
