@@ -23,38 +23,40 @@ and create DNS record spin-x509.NAMESPACE.opsmx.com
 
 ## Copy the certificate files to the halyard pod
 
-                 kubectl cp ca.crt <NAMESPACE>--spinnaker-halyard-0:/home/spinnaker/ca.crt  -n <NAMESPACE>
+        kubectl cp ca.crt <NAMESPACE>--spinnaker-halyard-0:/home/spinnaker/ca.crt  -n <NAMESPACE>
 
-                 kubectl cp tls.crt <NAMESPACE>-spinnaker-halyard-0:/home/spinnaker/tls.crt  -n <NAMESPACE>
+        kubectl cp tls.crt <NAMESPACE>-spinnaker-halyard-0:/home/spinnaker/tls.crt  -n <NAMESPACE>
                  
-                 kubectl cp tls.key <NAMESPACE>-spinnaker-halyard-0:/home/spinnaker/tls.key  -n <NAMESPACE>
+        kubectl cp tls.key <NAMESPACE>-spinnaker-halyard-0:/home/spinnaker/tls.key  -n <NAMESPACE>
                  
-                 kubectl cp tls.p12 <NAMESPACE>-spinnaker-halyard-0:/home/spinnaker/tls.p12  -n <NAMESPACE>
+        kubectl cp tls.p12 <NAMESPACE>-spinnaker-halyard-0:/home/spinnaker/tls.p12  -n <NAMESPACE>
 
 
    ## Enter into the Halyard pod 
 
-                kubectl exec -it <NAMESPACE>-spinnaker-halyard-0 bash -n <NAMESPACE>
+        kubectl exec -it <NAMESPACE>-spinnaker-halyard-0 bash -n <NAMESPACE>
 
 Run the below commands in the Halyard Pod
 
-                hal config security api ssl edit --key-alias gate --keystore /home/spinnaker/tls.jks --keystore-password --keystore-type jks --truststore /home/spinnaker/tls.jks --truststore-password --truststore-type jks
+        hal config security api ssl edit --key-alias gate --keystore /home/spinnaker/tls.jks --keystore-password --keystore-type jks --truststore /home/spinnaker/tls.jks --truststore-password --truststore-type jks
 
-                hal config security api ssl enable
+        hal config security api ssl enable
 
-                hal config security authn x509 enable
+        hal config security authn x509 enable
 
   ## Add this to default/profiles/gate-local.yml
 
-                    default:
-                      apiPort: 8085
-                      legacyServerPort: 9001
+        default:
+          apiPort: 8085
+          legacyServerPort: 9001
 
   ## Run a hal command to apply changes
     
-                hal deploy apply
+         hal deploy apply
 
 
 ## Verify the x509 
 
-                curl -vvv https://spin-x509:8085/applications --cacert /home/spinnaker/ca.crt --cert /home/spinnaker/tls.crt --key /home/spinnaker/tls.key
+         curl -vvv https://spin-x509:8085/applications --cacert /home/spinnaker/ca.crt --cert /home/spinnaker/tls.crt --key /home/spinnaker/tls.key
+         
+         list of applications will be printed in the Json format
