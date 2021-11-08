@@ -42,7 +42,7 @@ Run the below commands in the Halyard Pod
 
         hal config security api ssl edit --key-alias gate --keystore /home/spinnaker/tls.jks --keystore-password --keystore-type jks --truststore /home/spinnaker/tls.jks --truststore-password --truststore-type jks
         
-        It will promt to password please use this **changeit**
+  It will promt to password please use this **changeit**
 
         hal config security api ssl enable
 
