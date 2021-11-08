@@ -1,0 +1,9 @@
+Debug on Error (8-Nov-2021)
+
+Error from server (InternalError): error when creating "cs.yml": Internal error occurred: failed calling webhook "webhook.cert-manager.io": Post "https://cert-manager-webhook.cert-manager.svc:443/mutate?timeout=10s": x509: certificate signed by unknown authority (possibly because of "x509: ECDSA verification failure" while trying to verify candidate authority certificate "cert-manager-webhook-ca")
+        
+This is the version  issue 
+
+Deleted the cermanger pods in cert-manager namespace
+
+replace all yaml with **apiVersion: cert-manager.io/v1** by removing apiVersion: cert-manager.io/v1alpha2
