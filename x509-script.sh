@@ -13,8 +13,7 @@ Inputs - Make sure that the Namespace Exists
 	
 	DNS like opsmx.com 
 
-	If you want to expose the x509 gate to the external world, please create a spin-x509 service of type LB with application running on port 8085 
-	and create DNS record spin-x509.NAMESPACE.opsmx.com 
+	Once executed the script follow the steps to complete the process.
 
 -------"
 
@@ -66,13 +65,15 @@ Please do the following in the Halyard Pod
 
 ## Copy the certificate files to the halyard pod
 
-        kubectl cp ca.crt <NAMESPACE>--spinnaker-halyard-0:/home/spinnaker/ca.crt  -n <NAMESPACE>
+        kubectl cp ca.crt <NAMESPACE>-spinnaker-halyard-0:/home/spinnaker/ca.crt  -n <NAMESPACE>
 
         kubectl cp tls.crt <NAMESPACE>-spinnaker-halyard-0:/home/spinnaker/tls.crt  -n <NAMESPACE>
                  
         kubectl cp tls.key <NAMESPACE>-spinnaker-halyard-0:/home/spinnaker/tls.key  -n <NAMESPACE>
                  
         kubectl cp tls.p12 <NAMESPACE>-spinnaker-halyard-0:/home/spinnaker/tls.p12  -n <NAMESPACE>
+        
+        kubectl cp tls.jks  <NAMESPACE>-spinnaker-halyard-0:/home/spinnaker/tls.jks  -n <NAMESPACE>
 
 
    ## Enter into the Halyard pod 
@@ -82,6 +83,8 @@ Please do the following in the Halyard Pod
 Run the below commands in the Halyard Pod
 
         hal config security api ssl edit --key-alias gate --keystore /home/spinnaker/tls.jks --keystore-password --keystore-type jks --truststore /home/spinnaker/tls.jks --truststore-password --truststore-type jks
+        
+  It will promt to password please use this **changeit**
 
         hal config security api ssl enable
 
@@ -98,7 +101,7 @@ Run the below commands in the Halyard Pod
          hal deploy apply
 
 
-## Verify the x509 
+## Verify the x509 in the halyard pod
 
          curl -vvv https://spin-x509:8085/applications --cacert /home/spinnaker/ca.crt --cert /home/spinnaker/tls.crt --key /home/spinnaker/tls.key
          
